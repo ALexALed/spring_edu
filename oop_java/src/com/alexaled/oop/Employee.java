@@ -1,6 +1,7 @@
 package com.alexaled.oop;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Employee {
     public static final String DEFAULT_NAME = "UNKNOWN";
@@ -40,10 +41,21 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", hireDate=" + hireDate +
-                '}';
+        return String.format("Employee{id=%d, name='%s', hireDate=%s}", id, name, hireDate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id &&
+                Objects.equals(name, employee.name) &&
+                Objects.equals(hireDate, employee.hireDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, hireDate);
     }
 }

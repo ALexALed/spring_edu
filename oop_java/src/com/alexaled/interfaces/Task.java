@@ -2,7 +2,7 @@ package com.alexaled.interfaces;
 
 import java.time.LocalDate;
 
-public class Task {
+public class Task implements Comparable<Task>{
     private int id;
     private String name;
     private LocalDate startDate = LocalDate.now();
@@ -56,5 +56,38 @@ public class Task {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public boolean isComplited() {
+        return complited;
+    }
+
+    public void setComplited(boolean complited) {
+        this.complited = complited;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", priority=" + priority +
+                ", complited=" + complited +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        return name.compareTo(task.getName());
     }
 }
